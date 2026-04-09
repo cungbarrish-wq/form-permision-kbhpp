@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ទម្រង់សុំច្បាប់ឈប់សម្រាក - មន្ទីរពេទ្យគន្ធបុប្ផា</title>
+    <link href="https://fonts.googleapis.com/css2?family=Moul&family=Suwannaphum:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-font: 'Khmer OS System', 'Khmer OS Battambang', 'Suwannaphum', sans-serif;
+        }
+
+        body {
+            font-family: var(--primary-font);
+            background-color: #e0e4e8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* A4 Landscape Settings */
+        .page {
+            width: 297mm;
+            min-height: 210mm;
+            background: white;
+            padding: 15mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        /* Header Layout */
+        .header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .left-header {
+            text-align: center;
+            width: 250px;
+            font-size: 14px;
+        }
+
+        .center-header {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            font-family: 'Khmer OS Muol Light', 'Khmer OS Moul Light', 'Moul', cursive;
+        }
+
+        .right-header {
+            width: 250px; /* Spacer to keep center-header perfectly centered */
+        }
+
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin: 8px auto;
+            display: block;
+        }
+
+        /* Form Info Section */
+        .form-info {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            font-weight: normal;
+            height: 40px;
+        }
+
+        td {
+            height: 55px; /* Ensures enough space for handwriting */
+        }
+
+        .col-num { width: 3%; }
+        .col-date { width: 22%; text-align: left; padding-left: 10px; line-height: 1.8;}
+        .col-reason { width: 15%; }
+        .col-sign { width: 10%; }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-family: var(--primary-font);
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .print-btn:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-2px);
+        }
+
+        /* Print Specific CSS */
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+            
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+                display: block;
+            }
+            
+            .page {
+                box-shadow: none;
+                width: 100%;
+                height: 100vh;
+                padding: 15mm;
+                page-break-after: avoid;
+            }
+            
+            .print-btn {
+                display: none !important;
+            }
+
+            /* Hiding default browser headers/footers in some browsers */
+            header, footer, nav, aside {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <!-- Header Section -->
+        <div class="header-wrapper">
+            <div class="left-header">
+                <div style="font-family: 'Khmer OS Muol Light', 'Khmer OS Moul Light', 'Moul', cursive;">ក្រសួងសុខាភិបាល</div>
+                <img src="https://fwta-backup.sgp1.digitaloceanspaces.com/kbhpp/fwta-backup/logos/38627adafe73959ee5416be268004b81.jpg" alt="ឡូហ្គោ មន្ទីរពេទ្យគន្ធបុប្ផា" class="logo-img">
+                <div>ការិយាល័យបច្ចេកទេស</div>
+            </div>
+            
+            <div class="center-header">
+                ព្រះរាជាណាចក្រកម្ពុជា<br>ជាតិ សាសនា ព្រះមហាក្សត្រ
+            </div>
+            
+            <div class="right-header"></div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="form-info">
+            <div class="info-row">
+                <span>ឈ្មោះ................................................................................</span>
+                <span>ផ្នែក.................................................................</span>
+            </div>
+            <div class="info-row">
+                <span>ច្បាប់ឈប់សម្រាកប្រចាំឆ្នាំ២០........</span>
+                <span>DES...........................................................</span>
+                <span>ឆ្នាំទី..................</span>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-num"></th>
+                    <th class="col-date"></th>
+                    <th class="col-reason">មូលហេតុ</th>
+                    <th class="col-sign">ហត្ថលេខា<br>សាមីខ្លួន</th>
+                    <th class="col-sign">នាយផ្នែក</th>
+                    <th class="col-sign">ប្រធានក្រុម<br>យាម</th>
+                    <th class="col-sign">ការិយាល័យ<br>បច្ចេកទេស</th>
+                    <th class="col-sign">នាយកមន្ទីរ<br>ពេទ្យ</th>
+                    <th class="col-sign">ផ្សេងៗ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>១</td>
+                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>២</td>
+                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>៣</td>
+                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>៤</td>
+                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>៥</td>
+                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>៦</td>
+                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        បោះពុម្ព (Print)
+    </button>
+
+</body>
+</html>
