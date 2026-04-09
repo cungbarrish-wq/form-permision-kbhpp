@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ទម្រង់សុំច្បាប់ឈប់សម្រាក - មន្ទីរពេទ្យគន្ធបុប្ផា</title>
+    
+    <!-- Favicon & Home Screen Icons -->
+    <link rel="icon" href="https://fwta-backup.sgp1.digitaloceanspaces.com/kbhpp/fwta-backup/logos/38627adafe73959ee5416be268004b81.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="https://fwta-backup.sgp1.digitaloceanspaces.com/kbhpp/fwta-backup/logos/38627adafe73959ee5416be268004b81.jpg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Social Media Crawling (Open Graph) -->
+    <meta property="og:title" content="ទម្រង់សុំច្បាប់ឈប់សម្រាក - មន្ទីរពេទ្យគន្ធបុប្ផា">
+    <meta property="og:description" content="ទម្រង់បែបបទសម្រាប់សុំច្បាប់ឈប់សម្រាកប្រចាំឆ្នាំរបស់បុគ្គលិក មន្ទីរពេទ្យគន្ធបុប្ផា។">
+    <meta property="og:image" content="https://raw.githubusercontent.com/cungbarrish-wq/form-permision-kbhpp/da3a76839f637d2ac4c3107aaa461da2c31d9394/%E1%9E%9F%E1%9E%BB%E1%9F%86%E1%9E%85%E1%9F%92%E1%9E%94%E1%9E%B6%E1%9E%94%E1%9F%8B.png">
+    <meta property="og:type" content="website">
+    
     <link href="https://fonts.googleapis.com/css2?family=Moul&family=Suwannaphum:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -77,7 +90,33 @@
         .info-row {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 20px;
+        }
+
+        .checkbox-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            vertical-align: middle;
+            margin: 0 3px 0 0;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group label {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Print hide/show utilities */
+        .print-only {
+            display: none;
         }
 
         /* Table Styling */
@@ -141,6 +180,13 @@
 
         /* Print Specific CSS */
         @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: inline !important;
+            }
+
             @page {
                 size: A4 landscape;
                 margin: 5mm; /* Apply uniform small margin for printing */
@@ -172,6 +218,12 @@
             header, footer, nav, aside {
                 display: none;
             }
+            
+            /* Ensure checkboxes print clearly */
+            input[type="checkbox"] {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
         }
     </style>
 </head>
@@ -201,7 +253,14 @@
             </div>
             <div class="info-row">
                 <span>ច្បាប់ឈប់សម្រាកប្រចាំឆ្នាំ២០........</span>
-                <span>DES...........................................................</span>
+                <span>
+                    <select id="roleType" class="no-print" onchange="document.getElementById('printRole').innerText = this.value + '..........................................'" style="font-family: inherit; font-size: inherit; padding: 2px 5px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="DES">DES</option>
+                        <option value="INTERN">INTERN</option>
+                    </select>
+                    <span class="no-print">..........................................</span>
+                    <span id="printRole" class="print-only">DES..........................................</span>
+                </span>
                 <span>ឆ្នាំទី..................</span>
             </div>
         </div>
