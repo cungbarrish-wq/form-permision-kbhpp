@@ -2,7 +2,7 @@
 <html lang="km">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>ទម្រង់សុំច្បាប់ឈប់សម្រាក - មន្ទីរពេទ្យគន្ធបុប្ផា</title>
     
     <!-- Favicon & Home Screen Icons -->
@@ -27,22 +27,32 @@
             font-family: var(--primary-font);
             background-color: #e0e4e8;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* ផ្តើមពីខាងលើ */
             min-height: 100vh;
+            overflow-x: hidden; /* លាក់របារអូសផ្តេក */
         }
 
-        /* A4 Landscape Settings */
+        /* Container សម្រាប់ទប់ការបង្រួម */
+        .page-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px; /* គម្លាតពីលើបន្តិច */
+        }
+
+        /* Actual A4 Page Layout */
         .page {
-            width: 297mm;
-            min-height: 210mm;
+            width: 1122px; /* ទំហំបណ្តោយ A4 Landscape */
+            height: 794px; /* ទំហំទទឹង A4 Landscape */
             background: white;
-            padding: 15mm 20mm;
+            padding: 56px 75px;
             box-sizing: border-box;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             position: relative;
+            transform-origin: top center; /* បង្រួមពីកណ្តាលផ្នែកខាងលើ */
         }
 
         /* Header Layout */
@@ -50,7 +60,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 0px; /* Reduced to bring text closer */
+            margin-bottom: 0px; 
         }
 
         .left-header {
@@ -68,21 +78,21 @@
         }
 
         .right-header {
-            width: 250px; /* Spacer to keep center-header perfectly centered */
+            width: 250px; 
         }
 
         .logo-img {
-            width: 130px; /* Reduced slightly */
+            width: 130px; 
             height: 130px;
             object-fit: contain;
-            margin: 0 auto -20px auto; /* Negative bottom margin to bring logo very close to the text below */
+            margin: 0 auto -20px auto; 
             display: block;
         }
 
         /* Form Info Section */
         .form-info {
             text-align: center;
-            margin-bottom: 10px; /* Reduced to fit 1 page */
+            margin-bottom: 10px; 
             font-size: 15px;
             line-height: 1.8;
         }
@@ -94,37 +104,15 @@
             gap: 20px;
         }
 
-        .checkbox-group {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .checkbox-group input[type="checkbox"] {
-            vertical-align: middle;
-            margin: 0 3px 0 0;
-            width: 15px;
-            height: 15px;
-            cursor: pointer;
-        }
-        
-        .checkbox-group label {
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-        }
-
         /* Print hide/show utilities */
-        .print-only {
-            display: none;
-        }
+        .print-only { display: none; }
 
         /* Table Styling */
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
-            page-break-inside: avoid; /* Prevent table breaking */
+            page-break-inside: avoid; 
         }
 
         th, td {
@@ -134,18 +122,9 @@
             vertical-align: middle;
         }
 
-        th {
-            font-weight: normal;
-            height: 35px; /* Adjusted height */
-        }
-
-        td {
-            height: 48px; /* Adjusted to fit exactly in one page while keeping writing space */
-        }
-        
-        tr {
-            page-break-inside: avoid;
-        }
+        th { font-weight: normal; height: 35px; }
+        td { height: 48px; }
+        tr { page-break-inside: avoid; }
 
         .col-num { width: 3%; }
         .col-date { width: 22%; text-align: left; padding-left: 10px; line-height: 1.8;}
@@ -180,16 +159,12 @@
 
         /* Print Specific CSS */
         @media print {
-            .no-print {
-                display: none !important;
-            }
-            .print-only {
-                display: inline !important;
-            }
+            .no-print { display: none !important; }
+            .print-only { display: inline !important; }
 
             @page {
                 size: A4 landscape;
-                margin: 5mm; /* Apply uniform small margin for printing */
+                margin: 5mm; 
             }
             
             body {
@@ -198,160 +173,154 @@
                 padding: 0;
                 display: block;
             }
+
+            .page-container {
+                padding: 0;
+            }
             
             .page {
-                box-shadow: none;
-                width: 100%;
-                min-height: auto; /* Remove min-height restraint */
-                height: auto;
-                padding: 5mm; /* Smaller padding for actual print */
+                width: 100% !important;
+                height: auto !important;
+                padding: 0 !important; 
                 margin: 0;
+                box-shadow: none;
                 page-break-after: avoid;
                 page-break-inside: avoid;
+                transform: none !important; /* ដកការបង្រួមពេល Print */
             }
             
-            .print-btn {
-                display: none !important;
-            }
-
-            /* Hiding default browser headers/footers in some browsers */
-            header, footer, nav, aside {
-                display: none;
-            }
-            
-            /* Ensure checkboxes print clearly */
-            input[type="checkbox"] {
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
-            }
+            .print-btn { display: none !important; }
+            header, footer, nav, aside { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="page">
-        <!-- Header Section -->
-        <div class="header-wrapper">
-            <div class="left-header">
-                <div style="font-family: 'Khmer OS Muol Light', 'Khmer OS Moul Light', 'Moul', cursive;">ក្រសួងសុខាភិបាល</div>
-                <img src="https://fwta-backup.sgp1.digitaloceanspaces.com/kbhpp/fwta-backup/logos/38627adafe73959ee5416be268004b81.jpg" alt="ឡូហ្គោ មន្ទីរពេទ្យគន្ធបុប្ផា" class="logo-img">
-            </div>
-            
-            <div class="center-header">
-                ព្រះរាជាណាចក្រកម្ពុជា<br>ជាតិ សាសនា ព្រះមហាក្សត្រ
-            </div>
-            
-            <div class="right-header"></div>
-        </div>
-
-        <!-- Info Section -->
-        <div class="form-info">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <div style="width: 250px; text-align: center; font-size: 14px;">ការិយាល័យបច្ចេកទេស</div>
-                <div style="flex-grow: 1; text-align: center;">
-                    <span style="margin-right: 20px;">ឈ្មោះ.........................................</span>
-                    <span>ផ្នែក.......................</span>
+    <div class="page-container">
+        <div class="page" id="a4-page">
+            <!-- Header Section -->
+            <div class="header-wrapper">
+                <div class="left-header">
+                    <div style="font-family: 'Khmer OS Muol Light', 'Khmer OS Moul Light', 'Moul', cursive;">ក្រសួងសុខាភិបាល</div>
+                    <img src="https://fwta-backup.sgp1.digitaloceanspaces.com/kbhpp/fwta-backup/logos/38627adafe73959ee5416be268004b81.jpg" alt="ឡូហ្គោ មន្ទីរពេទ្យគន្ធបុប្ផា" class="logo-img">
                 </div>
-                <div style="width: 250px;"></div>
+                
+                <div class="center-header">
+                    ព្រះរាជាណាចក្រកម្ពុជា<br>ជាតិ សាសនា ព្រះមហាក្សត្រ
+                </div>
+                
+                <div class="right-header"></div>
             </div>
-            <div class="info-row">
-                <span>ច្បាប់ឈប់សម្រាកប្រចាំឆ្នាំ២០........</span>
-                <span>
-                    <select id="roleType" class="no-print" onchange="document.getElementById('printRole').innerText = this.value + '..........................................'" style="font-family: inherit; font-size: inherit; padding: 2px 5px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px;">
-                        <option value="DES">DES</option>
-                        <option value="INTERN">INTERN</option>
-                    </select>
-                    <span class="no-print">..........................................</span>
-                    <span id="printRole" class="print-only">DES..........................................</span>
-                </span>
-                <span>ឆ្នាំទី..................</span>
-            </div>
-        </div>
 
-        <!-- Table Section -->
-        <table>
-            <thead>
-                <tr>
-                    <th class="col-num"></th>
-                    <th class="col-date"></th>
-                    <th class="col-reason">មូលហេតុ</th>
-                    <th class="col-sign">ហត្ថលេខា<br>សាមីខ្លួន</th>
-                    <th class="col-sign">នាយផ្នែក</th>
-                    <th class="col-sign">ប្រធានក្រុម<br>យាម</th>
-                    <th class="col-sign">ការិយាល័យ<br>បច្ចេកទេស</th>
-                    <th class="col-sign">នាយកមន្ទីរ<br>ពេទ្យ</th>
-                    <th class="col-sign">ផ្សេងៗ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>១</td>
-                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>២</td>
-                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>៣</td>
-                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>៤</td>
-                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>៥</td>
-                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>៦</td>
-                    <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+            <!-- Info Section -->
+            <div class="form-info">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="width: 250px; text-align: center; font-size: 14px;">ការិយាល័យបច្ចេកទេស</div>
+                    <div style="flex-grow: 1; text-align: center;">
+                        <span style="margin-right: 20px;">ឈ្មោះ.........................................</span>
+                        <span>ផ្នែក.......................</span>
+                    </div>
+                    <div style="width: 250px;"></div>
+                </div>
+                <div class="info-row">
+                    <span>ច្បាប់ឈប់សម្រាកប្រចាំឆ្នាំ២០........</span>
+                    <span>
+                        <select id="roleType" class="no-print" onchange="document.getElementById('printRole').innerText = this.value + '..........................................'" style="font-family: inherit; font-size: inherit; padding: 2px 5px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px;">
+                            <option value="DES">DES</option>
+                            <option value="INTERN">INTERN</option>
+                        </select>
+                        <span class="no-print">..........................................</span>
+                        <span id="printRole" class="print-only">DES..........................................</span>
+                    </span>
+                    <span>ឆ្នាំទី..................</span>
+                </div>
+            </div>
+
+            <!-- Table Section -->
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-num"></th>
+                        <th class="col-date"></th>
+                        <th class="col-reason">មូលហេតុ</th>
+                        <th class="col-sign">ហត្ថលេខា<br>សាមីខ្លួន</th>
+                        <th class="col-sign">នាយផ្នែក</th>
+                        <th class="col-sign">ប្រធានក្រុម<br>យាម</th>
+                        <th class="col-sign">ការិយាល័យ<br>បច្ចេកទេស</th>
+                        <th class="col-sign">នាយកមន្ទីរ<br>ពេទ្យ</th>
+                        <th class="col-sign">ផ្សេងៗ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>១</td>
+                        <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>២</td>
+                        <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>៣</td>
+                        <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>៤</td>
+                        <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>៥</td>
+                        <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>៦</td>
+                        <td class="col-date">ថ្ងៃទី..........ខែ........ដល់<br>ទី..........ខែ........ឆ្នាំ២០...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <button class="print-btn" onclick="window.print()">
@@ -362,6 +331,33 @@
         </svg>
         បោះពុម្ព (Print)
     </button>
+
+    <!-- Script សម្រាប់បង្រួមក្រដាសឲ្យ Fit ជាមួយអេក្រង់ទូរស័ព្ទ -->
+    <script>
+        function scalePage() {
+            const page = document.getElementById('a4-page');
+            const container = document.querySelector('.page-container');
+            const screenWidth = window.innerWidth;
+            const pageWidth = 1122; // ទំហំដើម A4
+            
+            // បើអេក្រង់តូចជាងក្រដាស ធ្វើការបង្រួម
+            if (screenWidth < pageWidth) {
+                const scale = (screenWidth - 20) / pageWidth; // ដក 20px សម្រាប់គម្លាតសងខាង
+                page.style.transform = `scale(${scale})`;
+                
+                // កែសម្រួលកម្ពស់ Container ដើម្បីកុំឲ្យមានគម្លាតសល់ខាងក្រោមច្រើនពេក
+                const scaledHeight = 794 * scale;
+                container.style.height = `${scaledHeight + 40}px`; 
+            } else {
+                page.style.transform = 'scale(1)';
+                container.style.height = 'auto';
+            }
+        }
+
+        // ដំណើរការពេលបើក និងពេលបង្វិលអេក្រង់
+        window.addEventListener('load', scalePage);
+        window.addEventListener('resize', scalePage);
+    </script>
 
 </body>
 </html>
